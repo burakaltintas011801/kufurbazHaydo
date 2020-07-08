@@ -3,19 +3,20 @@ const aliyeSov = require('./kufur.json')
 
 const client = new Discord.Client()
 
-const prefix = process.env.prefix//"!söv"
-const prefix_2 = process.env.prefix_2//"!score"
-const prefix_3 = process.env.prefix_3//"!totalscore"
+const prefix = process.env.prefix //"!söv"
+const prefix_2 = process.env.prefix_2 //"!score"
+const prefix_3 = process.env.prefix_3 //"!totalscore"
 
 
 let items = []
 let duoSovus = []
 
-let baseText = `\`\`\`\n----------------------------------------------   \t\t\t|\t\tPlayer\t\t|\t\tScore\t\t|\`\`\``
+
+let baseText = `\`\`\`\n|\t\tPlayer\t\t|\t\tScore\t\t|\`\`\``
 let resetText = baseText;
 
 
-let baseTextDuo = `\`\`\`\n-------------------------------------------------------   \t\t\t|\t\tSlayer\t\t|\t\tVictim\t\t| Score |\`\`\``
+let baseTextDuo = `\`\`\`\n|\t\tSlayer\t\t|\t\tVictim\t\t|\tScore\t|\`\`\``
 let resetTextDuo = baseTextDuo;
 
 
@@ -88,7 +89,7 @@ client.on("message", msg => {
             if (duoSovus.length !== 0) {
                 sorted_scoreTable = duoSovus.sort(sortByProperty("score"));
                 for (let index = 0; index < sorted_scoreTable.length; index++) {
-                    baseTextDuo += `\`\`\`\n\t  ${sorted_scoreTable[index]["slayer"]}\t\t\t  ${sorted_scoreTable[index]["victim"]}\t\t\t${sorted_scoreTable[index]["score"]}\n\`\`\``
+                    baseTextDuo += `\`\`\`\n${index+1}.\t ${sorted_scoreTable[index]["slayer"]}\t\t  ${sorted_scoreTable[index]["victim"]}\t\t\t${sorted_scoreTable[index]["score"]}\n\`\`\``
                 }
                 msg.channel.send(baseTextDuo);
                 baseTextDuo = resetTextDuo;
@@ -99,7 +100,7 @@ client.on("message", msg => {
             if (items.length !== 0) {
                 total_scoreTable = items.sort(sortByProperty("score"));
                 for (let index = 0; index < total_scoreTable.length; index++) {
-                    baseText += `\`\`\`\n\t\t${total_scoreTable[index]["slayer"]}\t\t\t\t${total_scoreTable[index]["score"]}\n\`\`\``
+                    baseText += `\`\`\`\n${index+1}.\t ${total_scoreTable[index]["slayer"]}\t\t\t\t${total_scoreTable[index]["score"]}\n\`\`\``
                 }
                 msg.channel.send(baseText)
                 baseText = resetText
@@ -115,7 +116,6 @@ client.on("message", msg => {
             msg.channel.send("Boşa kurşun sıkıldı :gun:")
         }
     }
-
 })
 
 client.login(process.env.TOKEN);
