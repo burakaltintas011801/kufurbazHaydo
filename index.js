@@ -16,7 +16,7 @@ let baseText = `\`\`\`\n|\t\tPlayer\t\t|\t\tScore\t\t|\`\`\``
 let resetText = baseText;
 
 
-let baseTextDuo = `\`\`\`\n|\t\tSlayer\t\t|\t\tVictim\t\t|\tScore\t|\`\`\``
+let baseTextDuo = `\`\`\`\n|\t\tSlayer\t\t|\t\tVictim\t\t| Score |\`\`\``
 let resetTextDuo = baseTextDuo;
 
 
